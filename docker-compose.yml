@@ -1,32 +1,37 @@
 version: '3'
 services:
-  mailhog:
-    image: mailhog/mailhog
-    ports:
-      - 8025:8025
-      - 1025:1025
+  # mailhog:
+  #   image: mailhog/mailhog
+  #   ports:
+  #     - 8025:8025
+  #     - 1025:1025
 
   backend:
     build:
       context: .
     environment:
-     - DATABASE_URL=db
-     - DATABASE_USERNAME=postgres
-     - DATABASE_PASSWORD=password
-     - DATABASE_PORT=5432
+      DATABASE_URL: db
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: password
+      DATABASE_PORT: 5432
     volumes:
-      - ./backend:/backend
+      - ./backend:/app
     depends_on:
       - db
     command: make start
+    ports:
+      - 5001:5001
 
   frontend:
     build:
       context: .
     volumes:
-      - ./frontend:/frontend
+      - ./frontend:/app
     command: make start
-
+    environment:
+      HTTP_PROXY: http://backend:5001
+    ports:
+      - 3000:3000
 
   db:
     image: postgres:15.3-alpine3.18
@@ -34,3 +39,6 @@ services:
       POSTGRES_PASSWORD: password
     volumes:
       - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

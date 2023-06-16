@@ -20,7 +20,7 @@ export default (): DataSourceOptions => {
         url: process.env.DATABASE_URL,
         synchronize: false,
         ssl: { rejectUnauthorized: false },
-        entities: [Users, Snippets],
+        entities: ["Users, Snippets"],
         migrations: [
           migration1663236009774,
           migration1670352324202,

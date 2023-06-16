@@ -4,7 +4,7 @@ import { XTerm } from 'xterm-for-react';
 import 'xterm/css/xterm.css';
 import classes from './Terminal.module.css';
 
-import { useTerminal } from './hooks.js';
+// import { useTerminal } from './hooks.js';
 
 const runTerminal = (xterm, { terminal, alertLogs }) => {
   const term = xterm.terminal;

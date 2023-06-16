@@ -65,4 +65,4 @@ compose-app-setup:
 	docker-compose run frontend make install build
 
 compose:
-	docker-compose up
+	docker-compose up --abort-on-container-exit

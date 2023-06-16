@@ -1,15 +1,15 @@
-FROM node:20.2.0-alpine
+FROM node:20.2.0
 
 WORKDIR /app
 
-RUN apk update && \
-    apk upgrade --available && \
-    apk add --update python3
+# RUN apk update && \
+#     apk upgrade --available && \
+#     apk add --update python3
 
-COPY . .
+# COPY . .
 
-RUN npm install
+# RUN npm install
 
-RUN npm run-script build:dev
+# RUN npm run-script build:dev
 
-CMD ["echo" "jopa"]
+# CMD ["echo" "jopa"]
